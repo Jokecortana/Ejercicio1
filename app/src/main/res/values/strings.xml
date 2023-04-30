@@ -1,3 +1,13 @@
 <resources>
     <string name="app_name">My Application</string>
+    <string name="nombre">Nombre</string>
+    <string name="cuenta">Número de cuenta</string>
+    <string name="correo">Correo</string>
+    <string name="Fecha">Fecha de nacimiento</string>
+    <string name="siguiente">Siguiente</string>
+    <string name="apellido">Apellido</string>
+    <string name="encabezado">Introduzca los siguientes datos</string>
+    <string name="carrera">Carrera</string>
+    <string name="rApellidos">Apellidos</string>
+    <string name="rNombre">Nombre</string>
 </resources>
