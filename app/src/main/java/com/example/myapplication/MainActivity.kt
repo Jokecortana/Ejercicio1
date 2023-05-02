@@ -42,7 +42,7 @@ data class User (var nombre: String?, var apellido: String?, var numCta: Int): P
     }
 }
 
-
+//MAIN ACTIVITY
 class MainActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivityMainBinding
@@ -59,7 +59,7 @@ class MainActivity : AppCompatActivity() {
     fun click(view: View) {
 
         val intent = Intent(this, MainActivity2::class.java)
-        //nombre
+        //nombre EDIT TEXT
         val nombreT = findViewById<EditText>(R.id.etNombre)
 
         //apellido
@@ -68,11 +68,32 @@ class MainActivity : AppCompatActivity() {
         //numero de cuenta
         val numCtaT = findViewById<EditText>(R.id.etNumCta)
 
+        //correo edit text
+        val emaileT = findViewById<EditText>(R.id.etMail)
+
+
+        //obtencion de datos ingresados
 
         val nombre = nombreT.text.toString()
         val apellido= apellidoT.text.toString()
         val numCta = numCtaT.text.toString().toInt()
 
+        val email = emaileT.text.toString()
+
+        //validacion email
+        if (isValidEmail(email)) {
+            // Realizar alguna operación con el correo electrónico
+        } else {
+            // Mostrar un mensaje de error al usuario
+            Toast.makeText(this, "Correo electrónico inválido", Toast.LENGTH_SHORT).show()
+        }
+
+
+
+
+
+
+        //objeto
         val user = User(nombre,apellido,numCta)
 
 
@@ -83,6 +104,7 @@ class MainActivity : AppCompatActivity() {
         bundle.putString("nombre", user.apellido)
         bundle.putInt("nombre", user.numCta)
 */
+        bundle.putString("mail", email)
 
         //pasando objeto parcelable
         bundle.putParcelable("usuarios", user)

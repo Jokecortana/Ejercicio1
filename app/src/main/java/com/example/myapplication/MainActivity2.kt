@@ -20,12 +20,10 @@ class MainActivity2 : AppCompatActivity() {
         val bundle = intent.extras
 
 
+
+
+
         // Referencia de text views
-        val nom= findViewById<TextView>(R.id.etNombre2)
-
-        val ape= findViewById<TextView>(R.id.etApellid2)
-
-        val cta= findViewById<TextView>(R.id.etNumCta2)
 
 
 
@@ -35,13 +33,17 @@ class MainActivity2 : AppCompatActivity() {
             val cuenta = bundle.getInt("cuenta", 0)
 
 
-            //Text VIew
+            //email
+            val email = bundle.getString("mail", "error")
+
+
+
+
+            //Text VIew referencia
+            val etmail2 = findViewById<TextView>(R.id.etMail2)
             val etNom2 = findViewById<TextView>(R.id.etNombre2)
             val etApe2 = findViewById<TextView>(R.id.etApellid2)
             val nCta2 = findViewById<TextView>(R.id.etNumCta2)
-
-
-
 
             var usuario: User? = null
 
@@ -59,7 +61,7 @@ class MainActivity2 : AppCompatActivity() {
                 etNom2.text= "${usuario.nombre}"
                 etApe2.text = "${usuario.apellido}"
                 nCta2.text = "${usuario.numCta}"
-
+                etmail2.text = email
             }
 
 

@@ -14,4 +14,5 @@
     <string name="resNombre">Su nombre es:</string>
     <string name="rVacio"> </string>
     <string name="rNumCta">Su númer de cuenta es:</string>
+    <string name="rCorreo">Su correo electronico es:</string>
 </resources>
