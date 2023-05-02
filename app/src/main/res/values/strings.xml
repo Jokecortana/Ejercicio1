@@ -10,4 +10,8 @@
     <string name="carrera">Carrera</string>
     <string name="rApellidos">Apellidos</string>
     <string name="rNombre">Nombre</string>
+    <string name="pushCta">Escribe aquí</string>
+    <string name="resNombre">Su nombre es:</string>
+    <string name="rVacio"> </string>
+    <string name="rNumCta">Su númer de cuenta es:</string>
 </resources>

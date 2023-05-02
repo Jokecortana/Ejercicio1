@@ -7,6 +7,10 @@
     android:background="@drawable/bgnd"
     tools:context=".MainActivity">
 
+
+
+
+
     <TextView
         android:id="@+id/textView2"
         android:layout_width="wrap_content"
@@ -34,13 +38,13 @@
         app:layout_constraintVertical_bias="0.941" />
 
     <EditText
-        android:id="@+id/editTextTextPersonName"
+        android:id="@+id/etNombre"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:ems="10"
         android:inputType="textPersonName"
         android:maxLength="10"
-        android:text="@string/rNombre"
+        android:hint="@string/pushCta"
         android:gravity="center"
         android:textSize="20sp"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -51,11 +55,14 @@
         app:layout_constraintVertical_bias="0.181" />
 
     <EditText
-        android:id="@+id/editTextNumber"
+        android:id="@+id/etNumCta"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:ems="10"
+        android:hint="@string/pushCta"
+        android:gravity="center"
         android:inputType="number"
+        android:maxLength="9"
         android:textSize="20sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
@@ -166,12 +173,12 @@
         app:layout_constraintVertical_bias="0.246" />
 
     <EditText
-        android:id="@+id/editTextTextPersonName2"
+        android:id="@+id/etApellido"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:ems="10"
         android:inputType="textPersonName"
-        android:text="@string/rApellidos"
+        android:hint="@string/pushCta"
         android:gravity="center"
         android:textSize="20sp"
         app:layout_constraintBottom_toBottomOf="parent"
