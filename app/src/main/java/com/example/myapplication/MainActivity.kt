@@ -1,16 +1,22 @@
 package com.example.myapplication
 
+import android.app.DatePickerDialog
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.os.Parcel
 import android.os.Parcelable
+import android.util.Log
 import android.view.View
+import android.view.ViewParent
+import android.widget.AdapterView
+import android.widget.ArrayAdapter
 import android.widget.EditText
 import android.widget.Toast
 import com.example.myapplication.databinding.ActivityMainBinding
 import kotlinx.parcelize.Parcelize
-
+import java.text.FieldPosition
+import java.util.*
 
 
 data class User (var nombre: String?, var apellido: String?, var numCta: Int): Parcelable {
@@ -54,9 +60,48 @@ class MainActivity : AppCompatActivity() {
         binding= ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
+
+        //Spiner
+        ArrayAdapter.createFromResource(this, R.array.options, android.R.layout.simple_spinner_item).also { adapter -> adapter.setDropDownViewResource(
+            android.R.layout.simple_spinner_dropdown_item)
+        binding.spinner.adapter= adapter
+        }
+
+        binding.spinner.onItemSelectedListener = object : AdapterView.OnItemSelectedListener{
+            override fun onItemSelected(parent: AdapterView<*>?,
+            view: View?, position: Int, id: Long) {
+                Log.d("LOGTAG", "Su carrera es: $position")
+            }
+
+            override fun onNothingSelected(parent: AdapterView<*>?) {
+
+            }
+
+
+        }
+
+
+
     }
 
-    fun click(view: View) {
+//Date picker
+    fun onClickScheduleDate(v:View) {
+        val etScheduleDate = findViewById<EditText>(R.id.etFecha)
+        val selectedCalendar = Calendar.getInstance()
+        val year = selectedCalendar.get(Calendar.YEAR)
+        val month = selectedCalendar.get(Calendar.MONTH)
+        val day = selectedCalendar.get(Calendar.DAY_OF_MONTH)
+
+        val listener = DatePickerDialog.OnDateSetListener{datePicker, y, m, d -> etScheduleDate.setText("$y-$m-$d") }
+
+        DatePickerDialog(this, listener, year, month, day).show()
+
+    }
+
+
+    fun click(view: View?) {
+
+
 
         val intent = Intent(this, MainActivity2::class.java)
         //nombre EDIT TEXT

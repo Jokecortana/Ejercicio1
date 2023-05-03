@@ -15,4 +15,16 @@
     <string name="rVacio"> </string>
     <string name="rNumCta">Su númer de cuenta es:</string>
     <string name="rCorreo">Su correo electronico es:</string>
+    <string name="rfecha">Seleccione en el calendario</string>
+
+    <string-array name="options">
+        <item>SELECCIONA UNA OPCIÓN</item>
+        <item>CARRERA 1</item>
+        <item>CARRERA2</item>
+        <item>CARRERA 3</item>
+        <item>CARRERA 4</item>
+    </string-array>
+
+
+
 </resources>
