@@ -51,6 +51,9 @@ class MainActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivityMainBinding
     var edadB = 0
+    var signo = ""
+    var signochino=""
+    private var selectedOption: String = ""
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -67,15 +70,14 @@ class MainActivity : AppCompatActivity() {
 
         binding.spinner.onItemSelectedListener = object : AdapterView.OnItemSelectedListener{
             override fun onItemSelected(parent: AdapterView<*>?,
-            view: View?, position: Int, id: Long) {
-                Log.d("LOGTAG", "Su carrera es: $position")
+                                        view: View?, position: Int, id: Long) {
+                selectedOption = parent?.getItemAtPosition(position).toString()
+                Log.d("LOGTAG", "La opción seleccionada es: $selectedOption")
             }
 
             override fun onNothingSelected(parent: AdapterView<*>?) {
 
             }
-
-
         }
 
 
@@ -111,6 +113,10 @@ class MainActivity : AppCompatActivity() {
             if (edad >= 18) {
                 Toast.makeText(v.context, "Correcto", Toast.LENGTH_SHORT).show()
                 edadB=edad
+                val signoZodiacal = obtenerSignoZodiacal(fechaNacimiento)
+                signo=signoZodiacal
+                val signoZodiacalChino = obtenerSignoZodiacalChino(fechaNacimiento)
+                signochino=signoZodiacalChino
             } else {
                 Toast.makeText(v.context, "Debes ser mayor de 18 años para continuar.", Toast.LENGTH_SHORT).show()
                 etEdd.text = ""
@@ -147,6 +153,83 @@ class MainActivity : AppCompatActivity() {
         val hoy = Calendar.getInstance()
         return fecha < hoy
     }
+
+
+    //signo zodiacal
+    fun obtenerSignoZodiacal(fechaNacimiento: Calendar): String {
+        val mes = fechaNacimiento.get(Calendar.MONTH)
+        val dia = fechaNacimiento.get(Calendar.DAY_OF_MONTH)
+        when (mes) {
+            Calendar.JANUARY -> {
+                if (dia <= 19) return "Capricornio"
+                else return "Acuario"
+            }
+            Calendar.FEBRUARY -> {
+                if (dia <= 18) return "Acuario"
+                else return "Piscis"
+            }
+            Calendar.MARCH -> {
+                if (dia <= 20) return "Piscis"
+                else return "Aries"
+            }
+            Calendar.APRIL -> {
+                if (dia <= 19) return "Aries"
+                else return "Tauro"
+            }
+            Calendar.MAY -> {
+                if (dia <= 20) return "Tauro"
+                else return "Géminis"
+            }
+            Calendar.JUNE -> {
+                if (dia <= 20) return "Géminis"
+                else return "Cáncer"
+            }
+            Calendar.JULY -> {
+                if (dia <= 22) return "Cáncer"
+                else return "Leo"
+            }
+            Calendar.AUGUST -> {
+                if (dia <= 22) return "Leo"
+                else return "Virgo"
+            }
+            Calendar.SEPTEMBER -> {
+                if (dia <= 22) return "Virgo"
+                else return "Libra"
+            }
+            Calendar.OCTOBER -> {
+                if (dia <= 22) return "Libra"
+                else return "Escorpio"
+            }
+            Calendar.NOVEMBER -> {
+                if (dia <= 21) return "Escorpio"
+                else return "Sagitario"
+            }
+            Calendar.DECEMBER -> {
+                if (dia <= 21) return "Sagitario"
+                else return "Capricornio"
+            }
+            else -> return ""
+        }
+    }
+
+
+    //fin signo zodiacal
+
+    //signo zodiacal chino
+    private fun obtenerSignoZodiacalChino(fechaNacimiento: Calendar): String {
+        val año = fechaNacimiento.get(Calendar.YEAR)
+        val signosZodiacalesChinos = arrayOf("Rata", "Buey", "Tigre", "Conejo", "Dragón", "Serpiente", "Caballo", "Cabra", "Mono", "Gallo", "Perro", "Cerdo")
+        return signosZodiacalesChinos[(año - 1900) % 12]
+    }
+    //fin signo zodiacal chino
+
+
+
+
+
+
+
+
 
 
     fun click(view: View?) {
@@ -200,6 +283,10 @@ class MainActivity : AppCompatActivity() {
         //pasando objeto parcelable
         bundle.putParcelable("usuarios", user)
         bundle.putInt("eddad", edadB)
+        bundle.putString("signoZ",  signo)
+        bundle.putString("carrera", selectedOption)
+
+        bundle.putString("signoCh", signochino)
 
         intent.putExtras(bundle)
 
