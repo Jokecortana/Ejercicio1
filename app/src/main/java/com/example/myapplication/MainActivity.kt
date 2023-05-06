@@ -8,14 +8,12 @@ import android.os.Parcel
 import android.os.Parcelable
 import android.util.Log
 import android.view.View
-import android.view.ViewParent
 import android.widget.AdapterView
 import android.widget.ArrayAdapter
 import android.widget.EditText
+import android.widget.TextView
 import android.widget.Toast
 import com.example.myapplication.databinding.ActivityMainBinding
-import kotlinx.parcelize.Parcelize
-import java.text.FieldPosition
 import java.util.*
 
 
@@ -52,7 +50,7 @@ data class User (var nombre: String?, var apellido: String?, var numCta: Int): P
 class MainActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivityMainBinding
-
+    var edadB = 0
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -85,17 +83,69 @@ class MainActivity : AppCompatActivity() {
     }
 
 //Date picker
+
     fun onClickScheduleDate(v:View) {
+        val intent = Intent(this, MainActivity2::class.java)
         val etScheduleDate = findViewById<EditText>(R.id.etFecha)
+        val etEdd = findViewById<TextView>(R.id.etEdd)
         val selectedCalendar = Calendar.getInstance()
         val year = selectedCalendar.get(Calendar.YEAR)
         val month = selectedCalendar.get(Calendar.MONTH)
         val day = selectedCalendar.get(Calendar.DAY_OF_MONTH)
 
-        val listener = DatePickerDialog.OnDateSetListener{datePicker, y, m, d -> etScheduleDate.setText("$y-$m-$d") }
+        val listener = DatePickerDialog.OnDateSetListener { datePicker, y, m, d ->
+            // Obtener la fecha de nacimiento del usuario
+            val fechaNacimiento = Calendar.getInstance().apply {
+                set(Calendar.YEAR, y)
+                set(Calendar.MONTH, m)
+                set(Calendar.DAY_OF_MONTH, d)
+
+            }
+
+            etScheduleDate.setText("$y, $m-$d")
+            if (esFechaValida(fechaNacimiento)) {
+            // Calcular la edad del usuario
+            var edad = obtenerEdad(fechaNacimiento.timeInMillis)
+
+            // Comprobar si el usuario tiene más de 18 años
+            if (edad >= 18) {
+                Toast.makeText(v.context, "Correcto", Toast.LENGTH_SHORT).show()
+                edadB=edad
+            } else {
+                Toast.makeText(v.context, "Debes ser mayor de 18 años para continuar.", Toast.LENGTH_SHORT).show()
+                etEdd.text = ""
+
+            }
+
+
+            } else {
+                // La fecha seleccionada no es válida, mostrar un mensaje y permitir seleccionar una nueva fecha
+                Toast.makeText(v.context, "Debe ser mayor de 18 años para usar la aplicacion", Toast.LENGTH_SHORT).show()
+            }
+
+
+
+
+        }
+
 
         DatePickerDialog(this, listener, year, month, day).show()
 
+
+    }
+
+
+    // Función para obtener la edad a partir de una fecha de nacimiento en milisegundos
+    private fun obtenerEdad(fechaNacimiento: Long): Int {
+        val hoy = Calendar.getInstance().timeInMillis
+        val diff = hoy - fechaNacimiento
+        val edadInMillis = diff
+        return ((edadInMillis / 1000) / 60 / 60 / 24 / 365).toInt()
+    }
+
+    private fun esFechaValida(fecha: Calendar): Boolean {
+        val hoy = Calendar.getInstance()
+        return fecha < hoy
     }
 
 
@@ -144,22 +194,30 @@ class MainActivity : AppCompatActivity() {
 
 
         val bundle = Bundle()
-        /*paquete
-        bundle.putString("nombre", user.nombre)
-        bundle.putString("nombre", user.apellido)
-        bundle.putInt("nombre", user.numCta)
-*/
+
         bundle.putString("mail", email)
 
         //pasando objeto parcelable
         bundle.putParcelable("usuarios", user)
-
+        bundle.putInt("eddad", edadB)
 
         intent.putExtras(bundle)
 
         startActivity(intent)
 
         //Toast.makeText(this, "nu nombre es ${user.nombre} ${user.apellido} y su numero de cuenta es: ${user.numCta}", Toast.LENGTH_LONG).show()
+
+
+
+
+
+
+
+
+
+
+
+
     }
 
 }

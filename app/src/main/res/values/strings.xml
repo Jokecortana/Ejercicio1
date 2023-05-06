@@ -16,13 +16,28 @@
     <string name="rNumCta">Su númer de cuenta es:</string>
     <string name="rCorreo">Su correo electronico es:</string>
     <string name="rfecha">Seleccione en el calendario</string>
+    <string name="redad">Su edad es:</string>
+    <string name="rZodiaco">Signo zodiacal:</string>
+    <string name="rZChino">Horoscopo chino:</string>
+    <string name="rCarrera">Carrera:</string>
 
     <string-array name="options">
         <item>SELECCIONA UNA OPCIÓN</item>
-        <item>CARRERA 1</item>
-        <item>CARRERA2</item>
-        <item>CARRERA 3</item>
-        <item>CARRERA 4</item>
+        <item>Ingenieria en computación</item>
+        <item>Ingeniería aeroespacial</item>
+        <item>Ingeniería civil</item>
+        <item>Ingeniería geomatica</item>
+        <item>Ingeniería ambiental</item>
+        <item>Ingeniería geofisica</item>
+        <item>Ingeniería geologica</item>
+        <item>Ingeniería petrolera</item>
+        <item>Ingeniería minas y metalurgia</item>
+        <item>Ingeniería electrica electronica</item>
+        <item>Ingeniería en telecomunicaciones</item>
+        <item>Ingeniería mecánica</item>
+        <item>Ingeniería indistrial</item>
+        <item>Ingeniería mecaatronica</item>
+        <item>Ingeniería en sistemas biomedicos</item>
     </string-array>
 
 

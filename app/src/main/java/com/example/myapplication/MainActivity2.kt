@@ -31,15 +31,16 @@ class MainActivity2 : AppCompatActivity() {
             val nombre = bundle.getString("nombre", "")
             val apellido = bundle.getString("apellido", "")
             val cuenta = bundle.getInt("cuenta", 0)
-
+            val edad2= bundle.getInt("eddad", 0)
 
             //email
             val email = bundle.getString("mail", "error")
 
 
-
+            val bundledad = intent.getBundleExtra("bundle1")
 
             //Text VIew referencia
+            val etEdad = findViewById<TextView>(R.id.etEdd)
             val etmail2 = findViewById<TextView>(R.id.etMail2)
             val etNom2 = findViewById<TextView>(R.id.etNombre2)
             val etApe2 = findViewById<TextView>(R.id.etApellid2)
@@ -55,13 +56,19 @@ class MainActivity2 : AppCompatActivity() {
                 bundle.getParcelable<User>("usuarios")
             }
 
-            if(usuario!=null){
-                Toast.makeText(this, "El nombre recibido es: ${usuario.nombre}, cuenta ${usuario.numCta} y apellido ${usuario.apellido}", Toast.LENGTH_LONG).show()
+            if(usuario!=null) {
+                Toast.makeText(
+                    this,
+                    "El nombre recibido es: ${usuario.nombre}, cuenta ${usuario.numCta} y apellido ${usuario.apellido}",
+                    Toast.LENGTH_LONG
+                ).show()
 
-                etNom2.text= "${usuario.nombre}"
+                etNom2.text = "${usuario.nombre}"
                 etApe2.text = "${usuario.apellido}"
                 nCta2.text = "${usuario.numCta}"
                 etmail2.text = email
+                etEdad.text = "${edad2.toString()} años"
+            }
             }
 
 
@@ -79,4 +86,3 @@ class MainActivity2 : AppCompatActivity() {
     }
 
 
-}
