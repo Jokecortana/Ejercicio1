@@ -28,13 +28,13 @@ class MainActivity2 : AppCompatActivity() {
 
 
         if(bundle!=null){
-            val nombre = bundle.getString("nombre", "")
-            val apellido = bundle.getString("apellido", "")
+            val nombre = bundle.getString("nombre", getString(R.string.vacio))
+            val apellido = bundle.getString("apellido", getString(R.string.vacio))
             val cuenta = bundle.getInt("cuenta", 0)
             val edad2= bundle.getInt("eddad", 0)
-            val Zod = bundle.getString("signoZ","error")
-            val ZodChino = bundle.getString("signoCh", "error")
-            val carrera = bundle.getString("carrera", "error")
+            val Zod = bundle.getString("signoZ",getString(R.string.error))
+            val ZodChino = bundle.getString("signoCh", getString(R.string.error))
+            val carrera = bundle.getString("carrera", getString(R.string.error))
 
             //email
             val email = bundle.getString("mail", "error")
@@ -65,7 +65,7 @@ class MainActivity2 : AppCompatActivity() {
             if(usuario!=null) {
                 Toast.makeText(
                     this,
-                    "Datos recibidos correctamente",
+                    getString(R.string.DatosCorrectos),
                     Toast.LENGTH_LONG
                 ).show()
 
@@ -73,7 +73,7 @@ class MainActivity2 : AppCompatActivity() {
                 etApe2.text = "${usuario.apellido}"
                 nCta2.text = "${usuario.numCta}"
                 etmail2.text = email
-                etEdad.text = "${edad2.toString()} años"
+                etEdad.text = getString(R.string.edad, edad2.toString())
                 sZodiac.text=  Zod
                 sChZodiaco.text=ZodChino
                 etcarrera.text=carrera

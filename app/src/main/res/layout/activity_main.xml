@@ -7,10 +7,6 @@
     android:background="@drawable/bgnd"
     tools:context=".MainActivity">
 
-
-
-
-
     <TextView
         android:id="@+id/textView2"
         android:layout_width="wrap_content"
@@ -44,6 +40,7 @@
         android:ems="10"
         android:inputType="textPersonName"
         android:maxLength="10"
+        android:importantForAutofill="no"
         android:hint="@string/pushCta"
         android:gravity="center"
         android:textSize="20sp"
@@ -61,6 +58,7 @@
         android:ems="10"
         android:hint="@string/pushCta"
         android:gravity="center"
+        android:importantForAutofill="no"
         android:inputType="number"
         android:maxLength="9"
         android:textSize="20sp"
@@ -99,10 +97,12 @@
 
     <EditText
         android:id="@+id/etMail"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="264dp"
+        android:layout_height="42dp"
         android:ems="10"
         android:gravity="center"
+        android:hint="@string/rEjeMail"
+        android:importantForAutofill="no"
         android:inputType="textEmailAddress"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
@@ -171,8 +171,10 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:ems="10"
+        android:maxLength="15"
         android:inputType="textPersonName"
         android:hint="@string/pushCta"
+        android:importantForAutofill="no"
         android:gravity="center"
         android:textSize="20sp"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -199,16 +201,17 @@
 
     <EditText
         android:id="@+id/etFecha"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:ems="10"
-        android:inputType="textPersonName"
-        android:hint="@string/rfecha"
-        android:onClick="onClickScheduleDate"
+        android:layout_width="272dp"
+        android:layout_height="42dp"
         android:clickable="true"
-        android:gravity="center"
+        android:ems="10"
         android:focusable="false"
+        android:gravity="center"
+        android:hint="@string/rfecha"
+        android:importantForAutofill="no"
+        android:inputType="textPersonName"
         android:maxLines="1"
+        android:onClick="onClickScheduleDate"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.467"

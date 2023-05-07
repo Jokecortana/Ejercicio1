@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="nombre">Name</string>
+    <string name="cuenta">Account Number</string>
+    <string name="correo">Mail</string>
+    <string name="Fecha">Date of birth</string>
+    <string name="siguiente">Next</string>
+    <string name="apellido">Last Name</string>
+    <string name="encabezado">Enter the next information</string>
+    <string name="carrera">Career</string>
+    <string name="rApellidos">Last Name</string>
+    <string name="rNombre">Name</string>
+    <string name="pushCta">Write here</string>
+    <string name="resNombre">"Your name is: "</string>
+    <string name="rNumCta">Your account number is:</string>
+    <string name="rCorreo">Your emalil address is:</string>
+    <string name="rfecha">Push here</string>
+    <string name="redad">Your age is:</string>
+    <string name="rZodiaco">Zodiac sign:</string>
+    <string name="rZChino">Chinese horoscope:</string>
+    <string name="rCarrera">Career</string>
+    <string name="Version">Version 1.0</string>
+    <string name="correcto">Correct</string>
+    <string name="mayor">You must be over 18 to use this app</string>
+    <string name="fechamayor">You cannot select dates older than today</string>
+    <string name="capricornio">Capricorn</string>
+    <string name="acuario">Aquarium</string>
+    <string name="piscis">Pisces</string>
+    <string name="aries">Aries</string>
+    <string name="tauro">Taurus</string>
+    <string name="geminis">Gemini</string>
+    <string name="cancer">Cancer</string>
+    <string name="leo">Leo</string>
+    <string name="virgo">Virgo</string>
+    <string name="libra">Libra</string>
+    <string name="escorpio">Scorpio</string>
+    <string name="sagitario">Sagittarius</string>
+    <string name="errorcta">Error, account number must be 9 digits</string>
+    <string name="corrinvalido">Invalid email address</string>
+    <string name="errorgeneral">Enter your information correctly in all fields</string>
+    <string name="DatosCorrectos">Data received successfully</string>
+    <string name="edad">%s Years old</string>
+    <string name="error">Error</string>
+    <string name="errorb">Error</string>
+
+
+    <string-array name="options">
+        <item>SELECT AN OPTION</item>
+        <item>Computer engineering</item>
+        <item>Aerospace Engineering</item>
+        <item>Civil Engineering</item>
+        <item>Geomatic engineering</item>
+        <item>Environmental engineering</item>
+        <item>Geophysical engineering</item>
+        <item>Engineering geology</item>
+        <item>Petroleum Engineering</item>
+        <item>Mining and metallurgical engineering</item>
+        <item>Electronic electrical engineering</item>
+        <item>Telecommunications Engineering</item>
+        <item>Mechanical Engineering</item>
+        <item>Industrial Engineering</item>
+        <item>Mechatronic engineering</item>
+        <item>Engineering in biomedical systems</item>
+    </string-array>
+
+    <string-array name="signos_zodiacales_chinos">
+        <item>Rat</item>
+        <item>Ox</item>
+        <item>Tiger</item>
+        <item>Rabbit</item>
+        <item>Dragon</item>
+        <item>Snake</item>
+        <item>Horse</item>
+        <item>Goat</item>
+        <item>Monkey</item>
+        <item>Rooster</item>
+        <item>Dog</item>
+        <item>Pig</item>
+    </string-array>
+    <string name="errorcorreo">Error, mail format incorrect</string>
+    <string name="correovalido">Valid email address</string>
+    <string name="rEjeMail">Example: user@example.com</string>
+
+
+</resources>

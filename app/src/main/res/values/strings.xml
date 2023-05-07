@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">My Application</string>
+    <string name="app_name" translatable="false">My Application</string>
     <string name="nombre">Nombre</string>
     <string name="cuenta">Número de cuenta</string>
     <string name="correo">Correo</string>
@@ -12,14 +12,41 @@
     <string name="rNombre">Nombre</string>
     <string name="pushCta">Escribe aquí</string>
     <string name="resNombre">Su nombre es:</string>
-    <string name="rVacio"> </string>
+    <string name="rVacio" translatable="false"> </string>
     <string name="rNumCta">Su númer de cuenta es:</string>
     <string name="rCorreo">Su correo electronico es:</string>
-    <string name="rfecha">Seleccione en el calendario</string>
+    <string name="rfecha">Presione aquí</string>
     <string name="redad">Su edad es:</string>
     <string name="rZodiaco">Signo zodiacal:</string>
     <string name="rZChino">Horoscopo chino:</string>
     <string name="rCarrera">Carrera:</string>
+    <string name="Version">Version 1.0</string>
+    <string name="correcto">Correcto</string>
+    <string name="mayor">Debes ser mayor de 18 años para usar esta aplicación</string>
+    <string name="fechamayor">No puedes seleccionar fechas mayores al dia de hoy</string>
+    <string name="capricornio">Capricornio</string>
+    <string name="acuario">Acuario</string>
+    <string name="piscis">Piscis</string>
+    <string name="aries">Aries</string>
+    <string name="tauro">Tauro</string>
+    <string name="geminis">Géminis</string>
+    <string name="cancer">Cancer</string>
+    <string name="leo">Leo</string>
+    <string name="virgo">Virgo</string>
+    <string name="libra">Libra</string>
+    <string name="escorpio">Escorpio</string>
+    <string name="sagitario">Sagitario</string>
+    <string name="vacio" translatable="false">\"\"</string>
+    <string name="errorcta">Error, el número de cuenta debe tener 9 dígitos</string>
+    <string name="corrinvalido">Correo electronico invalido</string>
+    <string name="errorgeneral">Introduce tu información correctamente en todos los campos</string>
+    <string name="DatosCorrectos">Datos recibidos correctamente</string>
+    <string name="edad">%s años</string>
+    <string name="error">Error</string>
+    <string name="errorb">Error</string>
+    <string name="errorcorreo">Error, no es un formato de correo valido</string>
+    <string name="correovalido">Correo Valido</string>
+    <string name="rEjeMail">Ejemplo: user@example.com</string>
 
     <string-array name="options">
         <item>SELECCIONA UNA OPCIÓN</item>
@@ -40,6 +67,22 @@
         <item>Ingeniería en sistemas biomedicos</item>
     </string-array>
 
+
+
+    <string-array name="signos_zodiacales_chinos">
+        <item>Rata</item>
+        <item>Buey</item>
+        <item>Tigre</item>
+        <item>Conejo</item>
+        <item>Dragón</item>
+        <item>Serpiente</item>
+        <item>Caballo</item>
+        <item>Cabra</item>
+        <item>Mono</item>
+        <item>Gallo</item>
+        <item>Perro</item>
+        <item>Cerdo</item>
+    </string-array>
 
 
 </resources>

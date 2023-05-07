@@ -6,7 +6,10 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.os.Parcel
 import android.os.Parcelable
+import android.provider.ContactsContract.CommonDataKinds.Email
+import android.text.TextUtils
 import android.util.Log
+import android.util.Patterns
 import android.view.View
 import android.widget.AdapterView
 import android.widget.ArrayAdapter
@@ -56,7 +59,7 @@ class MainActivity : AppCompatActivity() {
     var signochino = ""
     private var selectedOption: String = ""
     private var numCtaB = 0
-    private var emailB: String = ""
+    private var emailB = 0
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -81,7 +84,6 @@ class MainActivity : AppCompatActivity() {
                 view: View?, position: Int, id: Long
             ) {
                 selectedOption = parent?.getItemAtPosition(position).toString()
-                Log.d("LOGTAG", "La opción seleccionada es: $selectedOption")
             }
 
             override fun onNothingSelected(parent: AdapterView<*>?) {
@@ -105,7 +107,6 @@ class MainActivity : AppCompatActivity() {
 
 
     fun onClickScheduleDate(v: View) {
-        val intent = Intent(this, MainActivity2::class.java)
         val etScheduleDate = findViewById<EditText>(R.id.etFecha)
         val etEdd = findViewById<TextView>(R.id.etEdd)
         val selectedCalendar = Calendar.getInstance()
@@ -131,7 +132,8 @@ class MainActivity : AppCompatActivity() {
 
                     // Comprobar 18 años
                     if (edad >= 18) {
-                        Toast.makeText(v.context, "Correcto", Toast.LENGTH_SHORT).show()
+                        Toast.makeText(v.context, getString(R.string.correcto), Toast.LENGTH_SHORT)
+                            .show()
                         edadB = edad
                         val signoZodiacal = obtenerSignoZodiacal(fechaNacimiento)
                         signo = signoZodiacal
@@ -140,16 +142,15 @@ class MainActivity : AppCompatActivity() {
                     } else {
                         Toast.makeText(
                             v.context,
-                            "Debes ser mayor de 18 años para continuar.",
+                            getString(R.string.mayor),
                             Toast.LENGTH_SHORT
                         ).show()
-                        etEdd.text = ""
+                        etEdd.text = getString(R.string.vacio)
                     }
                 } else {
                     // La fecha seleccionada no es válida
                     Toast.makeText(
-                        v.context,
-                        "Debes ser mayor de 18 años para usar esta aplicacion",
+                        v.context, getString(R.string.mayor),
                         Toast.LENGTH_SHORT
                     ).show()
                 }
@@ -157,7 +158,7 @@ class MainActivity : AppCompatActivity() {
                 // La fecha seleccionada es posterior a la fecha actual
                 Toast.makeText(
                     v.context,
-                    "No puedes seleccionar fechas mayores a el día de hoy",
+                    getString(R.string.fechamayor),
                     Toast.LENGTH_SHORT
                 ).show()
             }
@@ -190,54 +191,54 @@ class MainActivity : AppCompatActivity() {
         val dia = fechaNacimiento.get(Calendar.DAY_OF_MONTH)
         when (mes) {
             Calendar.JANUARY -> {
-                if (dia <= 19) return "Capricornio"
-                else return "Acuario"
+                if (dia <= 19) return getString(R.string.capricornio)
+                else return getString(R.string.acuario)
             }
             Calendar.FEBRUARY -> {
-                if (dia <= 18) return "Acuario"
-                else return "Piscis"
+                if (dia <= 18) return getString(R.string.acuario)
+                else return getString(R.string.piscis)
             }
             Calendar.MARCH -> {
-                if (dia <= 20) return "Piscis"
-                else return "Aries"
+                if (dia <= 20) return getString(R.string.piscis)
+                else return getString(R.string.aries)
             }
             Calendar.APRIL -> {
-                if (dia <= 19) return "Aries"
-                else return "Tauro"
+                if (dia <= 19) return getString(R.string.aries)
+                else return getString(R.string.tauro)
             }
             Calendar.MAY -> {
-                if (dia <= 20) return "Tauro"
-                else return "Géminis"
+                if (dia <= 20) return getString(R.string.tauro)
+                else return getString(R.string.geminis)
             }
             Calendar.JUNE -> {
-                if (dia <= 20) return "Géminis"
-                else return "Cáncer"
+                if (dia <= 20) return getString(R.string.geminis)
+                else return getString(R.string.cancer)
             }
             Calendar.JULY -> {
-                if (dia <= 22) return "Cáncer"
-                else return "Leo"
+                if (dia <= 22) return getString(R.string.cancer)
+                else return getString(R.string.leo)
             }
             Calendar.AUGUST -> {
-                if (dia <= 22) return "Leo"
-                else return "Virgo"
+                if (dia <= 22) return getString(R.string.leo)
+                else return getString(R.string.virgo)
             }
             Calendar.SEPTEMBER -> {
-                if (dia <= 22) return "Virgo"
-                else return "Libra"
+                if (dia <= 22) return getString(R.string.virgo)
+                else return getString(R.string.libra)
             }
             Calendar.OCTOBER -> {
-                if (dia <= 22) return "Libra"
-                else return "Escorpio"
+                if (dia <= 22) return getString(R.string.libra)
+                else return getString(R.string.escorpio)
             }
             Calendar.NOVEMBER -> {
-                if (dia <= 21) return "Escorpio"
-                else return "Sagitario"
+                if (dia <= 21) return getString(R.string.escorpio)
+                else return getString(R.string.sagitario)
             }
             Calendar.DECEMBER -> {
-                if (dia <= 21) return "Sagitario"
-                else return "Capricornio"
+                if (dia <= 21) return getString(R.string.sagitario)
+                else return getString(R.string.capricornio)
             }
-            else -> return ""
+            else -> return getString(R.string.vacio)
         }
     }
 
@@ -247,79 +248,43 @@ class MainActivity : AppCompatActivity() {
     //signo zodiacal chino
     private fun obtenerSignoZodiacalChino(fechaNacimiento: Calendar): String {
         val año = fechaNacimiento.get(Calendar.YEAR)
-        val signosZodiacalesChinos = arrayOf(
-            "Rata",
-            "Buey",
-            "Tigre",
-            "Conejo",
-            "Dragón",
-            "Serpiente",
-            "Caballo",
-            "Cabra",
-            "Mono",
-            "Gallo",
-            "Perro",
-            "Cerdo"
-        )
+        val signosZodiacalesChinos = resources.getStringArray(R.array.signos_zodiacales_chinos)
         return signosZodiacalesChinos[(año - 1900) % 12]
     }
     //fin signo zodiacal chino
 
     fun click(view: View?) {
-        if(binding.etNombre.text.isNotEmpty() && binding.etApellido.text.isNotEmpty()  && binding.etNumCta.text.isNotEmpty() && binding.etMail.text.isNotEmpty() && numCtaB!=9 && selectedOption.isNotEmpty() && edadB>=18  ){
+        val nombre = binding.etNombre.text.toString()
+        val apellido = binding.etApellido.text.toString()
+        val numCta = binding.etNumCta.text.toString()
+        val email = binding.etMail.text.toString()
 
+        if (nombre.isEmpty() || apellido.isEmpty() || numCta.isEmpty() || email.isEmpty()) {
+            Toast.makeText(this, getString(R.string.errorgeneral), Toast.LENGTH_LONG).show()
+            return
+        }
 
-            val intent = Intent(this, MainActivity2::class.java)
-            //nombre EDIT TEXT
-            val nombreT = findViewById<EditText>(R.id.etNombre)
+        if (isValidEmail(email)) {
+            Toast.makeText(this, getString(R.string.correovalido), Toast.LENGTH_SHORT).show()
+            emailB = 0
 
-            //apellido
-            val apellidoT = findViewById<EditText>(R.id.etApellido)
-
-            //numero de cuenta
-            val numCtaT = findViewById<EditText>(R.id.etNumCta)
-
-            //correo edit text
-            val emaileT = findViewById<EditText>(R.id.etMail)
-
-
-            //obtencion de datos ingresados
-
-            val nombre = nombreT.text.toString()
-            val apellido= apellidoT.text.toString()
-            val numCta = numCtaT.text.toString().toInt()
-            val email = emaileT.text.toString()
-
-            //validacion de num de cuenta
-            if(numCtaT.text.length != 9){
+            if (numCta.length != 9) {
                 numCtaB = 10
-                Toast.makeText(this, "El número de cuenta debe tener 9 dígitos", Toast.LENGTH_SHORT).show()
+                Toast.makeText(this, getString(R.string.errorcta), Toast.LENGTH_SHORT).show()
                 return
             }
 
+            val intent = Intent(this, MainActivity2::class.java)
 
-            //validacion email
-            if (isValidEmail(email)) {
-                Toast.makeText(this, "Correo electrónico válido", Toast.LENGTH_SHORT).show()
-
-            } else {
-                Toast.makeText(this, "Correo electrónico invalido", Toast.LENGTH_SHORT).show()
-
-
-            }
-
-
-            //objeto
-            val user = User(nombre,apellido,numCta)
+            val user = User(nombre, apellido, numCta.toInt())
 
             val bundle = Bundle()
 
             bundle.putString("mail", email)
 
-            //pasando objeto parcelable
             bundle.putParcelable("usuarios", user)
             bundle.putInt("eddad", edadB)
-            bundle.putString("signoZ",  signo)
+            bundle.putString("signoZ", signo)
             bundle.putString("carrera", selectedOption)
 
             bundle.putString("signoCh", signochino)
@@ -328,27 +293,11 @@ class MainActivity : AppCompatActivity() {
 
             startActivity(intent)
 
-        }else{
-
-            Toast.makeText(this, "Introduce tu informacion correctamente en todos los campos",Toast.LENGTH_LONG).show()
+        } else {
+            Toast.makeText(this, getString(R.string.errorcorreo), Toast.LENGTH_SHORT).show()
+            emailB = 1
         }
-
-
     }
-
 }
-
-fun isValidEmail(email: String): Boolean {
-    val emailRegex = Regex("[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\\.[A-Z]{2,}")
-    if (!emailRegex.matches(email)) {
-        return true
-    }
-    return false
-
-
-}
-
-
-//validar campos
-
-
+    private fun isValidEmail(mail: CharSequence) =
+        (!TextUtils.isEmpty(mail) && Patterns.EMAIL_ADDRESS.matcher(mail).matches())
