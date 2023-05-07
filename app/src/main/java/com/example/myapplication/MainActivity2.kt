@@ -65,7 +65,7 @@ class MainActivity2 : AppCompatActivity() {
             if(usuario!=null) {
                 Toast.makeText(
                     this,
-                    "El nombre recibido es: ${usuario.nombre}, cuenta ${usuario.numCta} y apellido ${usuario.apellido}",
+                    "Datos recibidos correctamente",
                     Toast.LENGTH_LONG
                 ).show()
 
