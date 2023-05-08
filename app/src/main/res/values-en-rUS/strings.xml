@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
+    <string name="app_name">Excercise 1</string>
     <string name="nombre">Name</string>
     <string name="cuenta">Account Number</string>
     <string name="correo">Mail</string>

@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name" translatable="false">My Application</string>
+    <string name="app_name">Ejercicio1</string>
     <string name="nombre">Nombre</string>
     <string name="cuenta">Número de cuenta</string>
     <string name="correo">Correo</string>
@@ -20,7 +20,7 @@
     <string name="rZodiaco">Signo zodiacal:</string>
     <string name="rZChino">Horoscopo chino:</string>
     <string name="rCarrera">Carrera:</string>
-    <string name="Version">Version 1.0</string>
+    <string name="Version">Versión 1.0</string>
     <string name="correcto">Correcto</string>
     <string name="mayor">Debes ser mayor de 18 años para usar esta aplicación</string>
     <string name="fechamayor">No puedes seleccionar fechas mayores al dia de hoy</string>

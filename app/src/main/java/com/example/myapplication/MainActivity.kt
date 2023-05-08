@@ -60,6 +60,10 @@ class MainActivity : AppCompatActivity() {
     private var selectedOption: String = ""
     private var numCtaB = 0
     private var emailB = 0
+    private var isUnderage = false
+    private var spinB = 0
+
+    private var selectedImageResource: Int = 0
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -78,18 +82,30 @@ class MainActivity : AppCompatActivity() {
                 binding.spinner.adapter = adapter
             }
 
+        // ... Código para inicializar el Spinner ...
+
         binding.spinner.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
-            override fun onItemSelected(
-                parent: AdapterView<*>?,
-                view: View?, position: Int, id: Long
-            ) {
+            override fun onItemSelected(parent: AdapterView<*>?, view: View?, position: Int, id: Long) {
                 selectedOption = parent?.getItemAtPosition(position).toString()
+
+                // Define un array de recursos de imagen
+
+                // Recupera el recurso de imagen correspondiente a la opción seleccionada
+                selectedImageResource = position
+                intent.putExtra("selectedImagePosition", selectedImageResource)
             }
 
             override fun onNothingSelected(parent: AdapterView<*>?) {
-
+                // No se seleccionó ninguna opción
             }
         }
+
+
+
+
+
+
+
 
     }
 
@@ -145,14 +161,9 @@ class MainActivity : AppCompatActivity() {
                             getString(R.string.mayor),
                             Toast.LENGTH_SHORT
                         ).show()
-                        etEdd.text = getString(R.string.vacio)
+                        isUnderage = true
+                        edadB = 5
                     }
-                } else {
-                    // La fecha seleccionada no es válida
-                    Toast.makeText(
-                        v.context, getString(R.string.mayor),
-                        Toast.LENGTH_SHORT
-                    ).show()
                 }
             } else {
                 // La fecha seleccionada es posterior a la fecha actual
@@ -259,15 +270,24 @@ class MainActivity : AppCompatActivity() {
         val numCta = binding.etNumCta.text.toString()
         val email = binding.etMail.text.toString()
 
-        if (nombre.isEmpty() || apellido.isEmpty() || numCta.isEmpty() || email.isEmpty()) {
+//validacion spinner
+
+
+        if (nombre.isEmpty() || apellido.isEmpty() || numCta.isEmpty() || email.isEmpty() || edadB < 18 || binding.spinner.selectedItemPosition == 0)  {
             Toast.makeText(this, getString(R.string.errorgeneral), Toast.LENGTH_LONG).show()
+            if (binding.spinner.selectedItemPosition == 0) {
+                spinB = 1
+
+            } else {
+                spinB = 0
+            }
             return
         }
-
+//validacion email
         if (isValidEmail(email)) {
             Toast.makeText(this, getString(R.string.correovalido), Toast.LENGTH_SHORT).show()
             emailB = 0
-
+//validacion cuenta
             if (numCta.length != 9) {
                 numCtaB = 10
                 Toast.makeText(this, getString(R.string.errorcta), Toast.LENGTH_SHORT).show()
@@ -281,7 +301,7 @@ class MainActivity : AppCompatActivity() {
             val bundle = Bundle()
 
             bundle.putString("mail", email)
-
+            bundle.putInt("selectedImageResource", selectedImageResource)
             bundle.putParcelable("usuarios", user)
             bundle.putInt("eddad", edadB)
             bundle.putString("signoZ", signo)

@@ -4,6 +4,7 @@ import android.os.Build
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.EditText
+import android.widget.ImageView
 import android.widget.TextView
 import android.widget.Toast
 import com.example.myapplication.databinding.ActivityMainBinding
@@ -11,7 +12,8 @@ import com.example.myapplication.databinding.ActivityMainBinding
 class MainActivity2 : AppCompatActivity() {
 
     private lateinit var binding: ActivityMainBinding
-
+    private val imageResources = arrayOf(R.drawable.c1, R.drawable.c2, R.drawable.c3, R.drawable.c4, R.drawable.c5, R.drawable.c6, R.drawable.c7
+        , R.drawable.c8, R.drawable.c9, R.drawable.c10, R.drawable.c11, R.drawable.c12, R.drawable.c13, R.drawable.c14, R.drawable.c15)
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main2)
@@ -35,7 +37,7 @@ class MainActivity2 : AppCompatActivity() {
             val Zod = bundle.getString("signoZ",getString(R.string.error))
             val ZodChino = bundle.getString("signoCh", getString(R.string.error))
             val carrera = bundle.getString("carrera", getString(R.string.error))
-
+            val imageResource = bundle.getInt("selectedImageResource", 0)
             //email
             val email = bundle.getString("mail", "error")
 
@@ -51,7 +53,8 @@ class MainActivity2 : AppCompatActivity() {
             val sZodiac = findViewById<TextView>(R.id.tvZodiac)
             val sChZodiaco =findViewById<TextView>(R.id.tvZchino)
             val etcarrera = findViewById<TextView>(R.id.tvrCarrera)
-
+            val imageView = findViewById<ImageView>(R.id.iCarreras)
+            imageView.setImageResource(imageResources[imageResource-1])
             var usuario: User? = null
 
             usuario = if(Build.VERSION.SDK_INT>= Build.VERSION_CODES.TIRAMISU) {
@@ -77,6 +80,8 @@ class MainActivity2 : AppCompatActivity() {
                 sZodiac.text=  Zod
                 sChZodiaco.text=ZodChino
                 etcarrera.text=carrera
+
+
             }
             }
 
